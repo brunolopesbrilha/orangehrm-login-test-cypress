@@ -13,7 +13,7 @@ describe('Orange HRM Test', () => {
     errorAlert:".oxd-alert"
   }
 
-  describe('Teste Name Error', () => {
+  describe('Teste Name Fail', () => {
     it('pass', () => {
       cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'); 
       cy.get(selectorsList.usernameField).type('admim');
@@ -23,7 +23,7 @@ describe('Orange HRM Test', () => {
     })
   })
 
-  describe('Teste Password Error', () => {
+  describe('Teste Password Fail', () => {
     it('pass', () => {
       cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');  
       cy.get(selectorsList.usernameField).type('admim');
