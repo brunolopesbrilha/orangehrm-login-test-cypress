@@ -1,6 +1,7 @@
 describe('Orange HRM Test', () => {
   it('conect', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get(".orangehrm-login-title").should('contain.text','Login');
   })
   })
 
@@ -9,6 +10,7 @@ describe('Orange HRM Test', () => {
     passwordField:"[name='password']",
     submitloginButton:".oxd-button--main[type='submit']",
     copyrightLink: "[href='http://www.orangehrm.com']",
+    errorAlert:".oxd-alert"
   }
 
   describe('Teste Name Error', () => {
@@ -17,6 +19,7 @@ describe('Orange HRM Test', () => {
       cy.get(selectorsList.usernameField).type('admim');
       cy.get(selectorsList.passwordField).type('admin123');
       cy.get(selectorsList.submitloginButton).click();
+      cy.get(selectorsList.errorAlert);
     })
   })
 
@@ -26,6 +29,7 @@ describe('Orange HRM Test', () => {
       cy.get(selectorsList.usernameField).type('admim');
       cy.get(selectorsList.passwordField).type('admi123');
       cy.get(selectorsList.submitloginButton).click();
+      cy.get(selectorsList.errorAlert);
     })
   })
     
@@ -37,7 +41,7 @@ describe('Orange HRM Test', () => {
       })
   })
 
-  describe('Teste Login', () => {
+  describe('Teste Login - Sucess', () => {
     it('pass', () => {
       cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');   
       cy.get(selectorsList.usernameField).type('Admin');
@@ -46,4 +50,5 @@ describe('Orange HRM Test', () => {
       cy.location('pathname').should('equal','/web/index.php/dashboard/index');
       cy.get('.orangehrm-dashboard-grid');
     })
+
   }) 
