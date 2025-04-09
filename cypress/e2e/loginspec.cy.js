@@ -42,3 +42,5 @@ describe('Orange HRM Test', () => {
         cy.get(selectorsList.copyrightLink).click();
       })
   })
+
+  // login 
