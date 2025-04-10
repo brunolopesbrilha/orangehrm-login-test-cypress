@@ -1,23 +1,26 @@
+import userData from "../fixtures/userData.json";
+
+const selectorsList = {
+  usernameField:"[name='username']",
+  passwordField:"[name='password']",
+  submitloginButton:".oxd-button--main[type='submit']",
+  copyrightLink: "[href='http://www.orangehrm.com']",
+  errorAlert:".oxd-alert",
+  loginTitle:".orangehrm-login-title"
+}
+
 describe('Orange HRM Test', () => {
   it('conect', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-    cy.get(".orangehrm-login-title").should('contain.text','Login');
+    cy.get(selectorsList.loginTitle).contains('Login');
   })
   })
-
-  const selectorsList = {
-    usernameField:"[name='username']",
-    passwordField:"[name='password']",
-    submitloginButton:".oxd-button--main[type='submit']",
-    copyrightLink: "[href='http://www.orangehrm.com']",
-    errorAlert:".oxd-alert"
-  }
 
   describe('Teste Name Fail', () => {
     it('pass', () => {
       cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'); 
-      cy.get(selectorsList.usernameField).type('admim');
-      cy.get(selectorsList.passwordField).type('admin123');
+      cy.get(selectorsList.usernameField).type(userData.userFail.username);
+      cy.get(selectorsList.passwordField).type(userData.userSucess.password);
       cy.get(selectorsList.submitloginButton).click();
       cy.get(selectorsList.errorAlert);
     })
@@ -26,8 +29,8 @@ describe('Orange HRM Test', () => {
   describe('Teste Password Fail', () => {
     it('pass', () => {
       cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');  
-      cy.get(selectorsList.usernameField).type('admim');
-      cy.get(selectorsList.passwordField).type('admi123');
+      cy.get(selectorsList.usernameField).type(userData.userSucess.username);
+      cy.get(selectorsList.passwordField).type(userData.userFail.password);
       cy.get(selectorsList.submitloginButton).click();
       cy.get(selectorsList.errorAlert);
     })
@@ -44,8 +47,8 @@ describe('Orange HRM Test', () => {
   describe('Teste Login - Sucess', () => {
     it('pass', () => {
       cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');   
-      cy.get(selectorsList.usernameField).type('Admin');
-      cy.get(selectorsList.passwordField).type('admin123');
+      cy.get(selectorsList.usernameField).type(userData.userSucess.username);
+      cy.get(selectorsList.passwordField).type(userData.userSucess.password);
       cy.get(selectorsList.submitloginButton).click();
       cy.location('pathname').should('equal','/web/index.php/dashboard/index');
       cy.get('.orangehrm-dashboard-grid');
