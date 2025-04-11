@@ -11,6 +11,8 @@ Este repositório contém a automação de um fluxo básico no site de demonstra
 Acesse o plano completo no Notion:  
 👉 [Plano de Teste (Test Plan) - Orange HRM Demo v1.0](https://tricky-play-179.notion.site/Plano-de-Teste-Test-Plan-Orange-HRM-Demo-v1-0-1cfa99a0b6848056a359feed5200977c?pvs=74)
 
+---
+
 ## 🎯 Objetivo
 
 Realizar uma validação completa e estruturada das funcionalidades **frontend web (desktop)** do sistema **OrangeHRM**, assegurando que os principais fluxos de trabalho funcionem conforme o esperado.
