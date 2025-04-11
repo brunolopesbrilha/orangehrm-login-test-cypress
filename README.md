@@ -1,4 +1,4 @@
-﻿# 🚀Esstudo de Automação com Cypress
+﻿# 🚀Estudo de Automação com Cypress
 
 Este repositório contém a automação de um fluxo básico no site de demonstração **OrangeHRM** utilizando o framework **Cypress**.
 
