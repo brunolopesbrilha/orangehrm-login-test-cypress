@@ -1,16 +1,13 @@
+import userData from "../fixtures/userData.json"
+  import RequestPasswordPage from "../e2e/page_objects/requestPasswordPage.js" 
+
+  const requestPasswordPage = new RequestPasswordPage()
+
 describe('Orange HRM Test', () => {
     it('conect', () => {
       cy.visit('/auth/login')
     })
     })
-
-    const selectorsList = {
-        forgotpasswordField: ".orangehrm-login-forgot-header",
-        cancelButton:".orangehrm-forgot-password-button--cancel",
-        usernameField: "[name='username']",
-        submitButton: "[type='submit']",
-        copyrightLink: "[href='http://www.orangehrm.com']"  
-    }
 
     describe('Test Link Copyright', () => {
       it('pass', () => {

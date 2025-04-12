@@ -1,57 +1,34 @@
-import userData from "../fixtures/userData.json";
+  import userData from "../fixtures/userData.json"
+  import LoginPageClass from "../e2e/page_objects/loginPage.js" 
 
-const selectorsList = {
-  usernameField:"[name='username']",
-  passwordField:"[name='password']",
-  submitloginButton:".oxd-button--main[type='submit']",
-  copyrightLink: "[href='http://www.orangehrm.com']",
-  errorAlert:".oxd-alert",
-  loginTitle:".orangehrm-login-title"
-}
+  const loginPage = new LoginPageClass()
 
-describe('Orange HRM Test', () => {
-  it('conect', () => {
-    cy.visit('/auth/login');
-    cy.get(selectorsList.loginTitle).contains('Login');
-  })
-  })
-
-  describe('Teste Name Fail', () => {
-    it('pass', () => {
-      cy.visit('/auth/login'); 
-      cy.get(selectorsList.usernameField).type(userData.userFail.username);
-      cy.get(selectorsList.passwordField).type(userData.userSucess.password);
-      cy.get(selectorsList.submitloginButton).click();
-      cy.get(selectorsList.errorAlert);
+  describe('Orange HRM Test Page', () => {
+    it('Connected', () => {
+      loginPage.accessLoginPage()
     })
   })
 
-  describe('Teste Password Fail', () => {
-    it('pass', () => {
-      cy.visit('/auth/login');  
-      cy.get(selectorsList.usernameField).type(userData.userSucess.username);
-      cy.get(selectorsList.passwordField).type(userData.userFail.password);
-      cy.get(selectorsList.submitloginButton).click();
-      cy.get(selectorsList.errorAlert);
-    })
+describe('Test Name - Input: Incorrect', () => {
+  it('Test Successful', () => {
+    loginPage.invalidUsername(userData.userFail.username,userData.userSuccess.password);
   })
-    
-  describe('Teste Link Copyright', () => {
-      it('pass', () => {
-        cy.visit('/auth/login');   
-        cy.get(selectorsList.copyrightLink).click();
-        cy.get(selectorsList.copyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com')
-      })
+})
+
+describe('Test Password - Input: Incorrect', () => {
+  it('Test Successful', () => {
+    loginPage.invalidPassword(userData.userSuccess.username,userData.userFail.password);
   })
+})
 
-  describe('Teste Login - Sucess', () => {
-    it('pass', () => {
-      cy.visit('/auth/login');   
-      cy.get(selectorsList.usernameField).type(userData.userSucess.username);
-      cy.get(selectorsList.passwordField).type(userData.userSucess.password);
-      cy.get(selectorsList.submitloginButton).click();
-      cy.location('pathname').should('equal','/web/index.php/dashboard/index');
-      cy.get('.orangehrm-dashboard-grid');
-    })
+describe('Test Link Copyright - Input: Functional', () => {
+  it('Test Successful', () => {
+    loginPage.copyright
+  })
+})
 
-  }) 
+describe('Test Login - Input: Correct', () => {
+  it('Test Successful', () => {
+    loginPage.loginAsValidUser(userData.userSuccess.username,userData.userSuccess.password);
+  })
+})
