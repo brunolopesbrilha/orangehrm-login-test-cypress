@@ -1,0 +1,23 @@
+{
+  "name": "pasta_projeto_automacao",
+  "version": "1.0.0",
+  "description": "Este repositório contém a automação de um fluxo básico no site de demonstração **OrangeHRM** utilizando o framework **Cypress**.",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunolopesbrilha/orangehrm-login-test-cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunolopesbrilha/orangehrm-login-test-cypress/issues"
+  },
+  "homepage": "https://github.com/brunolopesbrilha/orangehrm-login-test-cypress#readme",
+  "devDependencies": {
+    "cypress": "^14.3.0"
+  }
+}
