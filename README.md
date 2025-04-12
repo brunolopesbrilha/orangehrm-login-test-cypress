@@ -82,3 +82,54 @@ O teste está contido nos arquivos:
 cypress/e2e/login.cy.js
 cypress/e2e/myinfo-page.cy.js
 cypress/e2e/requestPassword.cy.js
+
+# 🚀 Estudo de Automação com Cypress
+
+Este repositório contém a automação de um fluxo básico no site de demonstração **OrangeHRM** utilizando o framework **Cypress**.
+
+---
+
+## ⚙️ Passo a Passo para Configuração
+
+1. **Clonar o Repositório**:
+
+    Primeiro, clone este repositório para o seu computador:
+
+    ```bash
+    git clone https://github.com/brunolopesbrilha/orangehrm-login-test-cypress.git
+    ```
+
+2. **Instalar o Node.js**:
+
+    Se você ainda não tem o Node.js instalado, acesse [o site oficial](https://nodejs.org/) e baixe a versão mais recente. O **Node.js** é necessário para rodar o Cypress e gerenciar as dependências do projeto.
+
+3. **Instalar Dependências**:
+
+    Após instalar o Node.js, navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências:
+
+    ```bash
+    cd nome-do-repositorio
+    npm install
+    ```
+
+    Isso criará a pasta `node_modules` e instalará todas as bibliotecas necessárias para o projeto.
+
+4. **Rodar os Testes**:
+
+    Após as dependências estarem instaladas, rode o Cypress com o seguinte comando:
+
+    ```bash
+    npx cypress open
+    ```
+
+    Isso abrirá a interface do Cypress, onde você pode rodar os testes.
+
+5. **Push e Pull**:
+
+    Caso você precise integrar alterações do repositório remoto antes de enviar as suas mudanças, use os seguintes comandos:
+
+    ```bash
+    git pull origin main
+    git push origin main
+    ```
+---
