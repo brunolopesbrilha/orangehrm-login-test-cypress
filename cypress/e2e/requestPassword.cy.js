@@ -5,23 +5,9 @@ import userData from "../fixtures/userData.json"
 
 describe('Orange HRM Test', () => {
     it('conect', () => {
-      cy.visit('/auth/login')
+      requestPasswordPage.accessForgotPassword();
     })
     })
-
-    describe('Test Link Copyright', () => {
-      it('pass', () => {
-        cy.visit('/auth/requestPasswordResetCode')
-        cy.get("[href='http://www.orangehrm.com']").click()
-      })
-    })
-
-    describe('Test Link do forgot-password na pagina login', () => {
-        it('pass', () => {
-          cy.visit('/auth/login')
-          cy.get(selectorsList.forgotpasswordField).click()
-        })
-      })
 
     describe('Test cancel button', () => {
         it('pass', () => {
@@ -41,5 +27,11 @@ describe('Orange HRM Test', () => {
         it('pass', () => {
           cy.visit('/auth/requestPasswordResetCode')
           cy.get(selectorsList.submitButton).click()
+        })
+        
+        describe('Test Link Copyright', () => {
+          it('pass', () => {
+            requestPasswordPage.copyright();      
+          })
         })
       })

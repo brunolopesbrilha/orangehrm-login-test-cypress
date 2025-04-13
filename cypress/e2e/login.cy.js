@@ -31,4 +31,19 @@ describe('Test Login - Input: Correct', () => {
   it('Test Successful', () => {
     loginPage.loginAsValidUser(userData.userSuccess.username,userData.userSuccess.password);
   })
+
+describe('Test Forgot Password Link on Login Page', () => {
+  it('Test Successful', () => {
+   loginPage.forgetPassword()
+  })
+})
+
+describe.only('Test Social Media Links', () => {
+  it('Test Successful', () => {
+   loginPage.socialmediaCheck()
+  })
+})
+
+
+
 })
