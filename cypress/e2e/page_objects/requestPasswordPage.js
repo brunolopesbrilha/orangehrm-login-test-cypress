@@ -1,5 +1,9 @@
-class RequestPasswordPage {
+import LoginPage from "./loginPage.js";
 
+class RequestPasswordPage {
+    constructor() {
+        this.loginPage = new LoginPage();
+    }
     selectorsList() {
         const Selectors = {
             forgotpasswordField: ".orangehrm-login-forgot-header",
@@ -9,33 +13,43 @@ class RequestPasswordPage {
             forgotPasswordTitle: ".orangehrm-forgot-password-title",
             cancelButton: ".orangehrm-forgot-password-button--cancel",
             errorMenssage: ".oxd-input-field-error-message",
-            CopyrightLink: "[href='http://www.orangehrm.com']",
+            copyrightLink: "[href='http://www.orangehrm.com']",
         }
         return Selectors
     }
     accessForgotPassword() {
-        cy.get('/auth/requestPasswordResetCode');
+        cy.visit('/auth/requestPasswordResetCode');
     }
 
     submitUserName(username) {
-        cy.get(this.selectorsList().usernameField).click().type(username);
-        cy.get(this.selectorsList().resetButton).click();
-        cy.get(this.selectorsList().forgotPasswordTitle);
+        this.accessForgotPassword()
+        const {usernameField, resetButton, forgotPasswordTitle} = this.selectorsList();
+        cy.get(usernameField).type(username);
+        cy.get(resetButton).click();
+        cy.get(forgotPasswordTitle).should('be.visible');
     }
 
     cancelForgotPassword(username) {
-        cy.get(this.selectorsList().usernameField).click().type(username);
-        cy.get(this.selectorsList().cancelButton).click();
-        cy.location('pathname').should('equal', '/auth/login');
+        this.accessForgotPassword();
+        const {usernameField, cancelButton} = this.selectorsList();
+        cy.get(usernameField).type(username);
+        cy.get(cancelButton).click();
+        cy.location('pathname').should('equal', '/web/index.php/auth/login');
+        cy.get(this.loginPage.selectorList().loginTitle).should('be.visible');
     }
     clickButtonReset() {
-        cy.get(this.selectorsList().resetButton).click();
-        cy.get(this.selectorsList().errorMenssage);
+        this.accessForgotPassword()
+        const {resetButton, errorMenssage} = this.selectorsList();
+        cy.get(resetButton).click();
+        cy.get(errorMenssage).should('be.visible');
     }
 
     copyright() {
-        this.accessLoginPage();
-        cy.get(this.selectorList().CopyrightLink).click()
-        cy.get(this.selectorList().CopyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com');
+        this.accessForgotPassword()
+        const {copyrightLink} = this.selectorsList();
+        cy.get(copyrightLink).click()
+        cy.get(copyrightLink).should('have.attr', 'target', '_blank')
+        cy.get(copyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com');
     }
 }
+export default RequestPasswordPage

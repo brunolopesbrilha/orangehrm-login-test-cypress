@@ -1,13 +1,19 @@
-class LoginPageClass {
+import DashBoardPage from "./dashboardPage.js";
 
+class LoginPageClass {
+    
+    constructor() {
+        this.dashboardPage = new DashBoardPage();
+    } 
     selectorList() {
+        
         const Selectors = {
             usernameField: "[name='username']",
-            PasswordField: "[name='password']",
-            SubmitloginButton: ".oxd-button--main[type='submit']",
-            ErrorAlert: ".oxd-alert",
-            LoginTitle: ".orangehrm-login-title",
-            CopyrightLink: "[href='http://www.orangehrm.com']",
+            passwordField: "[name='password']",
+            submitloginButton: ".oxd-button--main[type='submit']",
+            errorAlert: ".oxd-alert",
+            loginTitle: ".orangehrm-login-title",
+            copyrightLink: "[href='http://www.orangehrm.com']",
             forgetPasswordTitle: ".orangehrm-login-forgot-header",
             forgetPasswordUrl: '/web/index.php/auth/requestPasswordResetCode',
             linkedinIcon: "[href='https://www.linkedin.com/company/orangehrm/mycompany/']", 
@@ -19,8 +25,8 @@ class LoginPageClass {
             ytString: "youtube",
             twitterString: "twitter",
             orangehrmString: "range"
+            
         }
-
         return Selectors
     }
 
@@ -30,39 +36,44 @@ class LoginPageClass {
 
     loginAsValidUser(username, password) {
         this.accessLoginPage();
-        cy.get(this.selectorList().usernameField).click().type(username);
-        cy.get(this.selectorList().PasswordField).click().type(password);
-        cy.get(this.selectorList().SubmitloginButton).click();
+        const { usernameField, PasswordField, SubmitloginButton } = this.selectorList();
+        cy.get(usernameField).click().type(username);
+        cy.get(PasswordField).click().type(password);
+        cy.get(SubmitloginButton).click();
         cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
-        //cy.get('.orangehrm-dashboard-grid');
+        cy.get(this.dashboardPage.selectorList().dashboardGrid).should('be.visible');
     }
 
     invalidUsername(username, password) {
         this.accessLoginPage();
-        cy.get(this.selectorList().usernameField).click().type(username);
-        cy.get(this.selectorList().PasswordField).click().type(password);
-        cy.get(this.selectorList().SubmitloginButton).click();
-        cy.get(this.selectorList().ErrorAlert);
+        const { usernameField, PasswordField, SubmitloginButton, ErrorAlert } = this.selectorList();
+        cy.get(usernameField).click().type(username);
+        cy.get(PasswordField).click().type(password);
+        cy.get(SubmitloginButton).click();
+        cy.get(ErrorAlert);
     }
 
     invalidPassword(username, password) {
         this.accessLoginPage();
-        cy.get(this.selectorList().usernameField).click().type(username);
-        cy.get(this.selectorList().PasswordField).click().type(password);
-        cy.get(this.selectorList().SubmitloginButton).click();
-        cy.get(this.selectorList().ErrorAlert); 
+        const { usernameField, PasswordField, SubmitloginButton, ErrorAlert } = this.selectorList();
+        cy.get(usernameField).click().type(username);
+        cy.get(PasswordField).click().type(password);
+        cy.get(SubmitloginButton).click();
+        cy.get(ErrorAlert); 
     }
 
     copyright() {
         this.accessLoginPage();
-        cy.get(this.selectorList().CopyrightLink).click();
-        cy.get(this.selectorList().CopyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com');
+        const { CopyrightLink } = this.selectorList();
+        cy.get(CopyrightLink).click();
+        cy.get(CopyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com');
     }
 
     forgetPassword(){
         this.accessLoginPage();
-        cy.get(this.selectorList().forgetPasswordTitle).click();
-        cy.location('pathname').should('include', this.selectorList().forgetPasswordUrl);
+        const { forgetPasswordTitle } = this.selectorList();
+        cy.get(forgetPasswordTitle).click();
+        cy.location('pathname').should('include', forgetPasswordUrl);
     }
 
     socialmediaCheck() {
@@ -99,7 +110,9 @@ class LoginPageClass {
     }
     
 }
-export default LoginPageClass
+
+export default LoginPageClass;
+
 
 // socialmediaCheck(){
     //     this.accessLoginPage()

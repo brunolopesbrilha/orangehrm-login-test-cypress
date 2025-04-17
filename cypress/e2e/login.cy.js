@@ -1,7 +1,10 @@
   import userData from "../fixtures/userData.json"
   import LoginPageClass from "../e2e/page_objects/loginPage.js" 
+  import DashBoardPage from "./page_objects/dashboardPage.js"
+ 
 
   const loginPage = new LoginPageClass()
+  const dashboardPage = new DashBoardPage()
 
   describe('Orange HRM Test Page', () => {
     it('Connected', () => {
@@ -23,7 +26,7 @@ describe('Test Password - Input: Incorrect', () => {
 
 describe('Test Link Copyright - Input: Functional', () => {
   it('Test Successful', () => {
-    loginPage.copyright
+    loginPage.copyright()
   })
 })
 
@@ -31,6 +34,7 @@ describe('Test Login - Input: Correct', () => {
   it('Test Successful', () => {
     loginPage.loginAsValidUser(userData.userSuccess.username,userData.userSuccess.password);
   })
+})
 
 describe('Test Forgot Password Link on Login Page', () => {
   it('Test Successful', () => {
@@ -38,12 +42,8 @@ describe('Test Forgot Password Link on Login Page', () => {
   })
 })
 
-describe.only('Test Social Media Links', () => {
+describe('Test Social Media Links', () => {
   it('Test Successful', () => {
    loginPage.socialmediaCheck()
   })
-})
-
-
-
 })
