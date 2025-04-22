@@ -1,6 +1,6 @@
   import userData from "../fixtures/userData.json"
   import LoginPageClass from "../e2e/page_objects/loginPage.js" 
-  import DashBoardPage from "./page_objects/dashboardPage.js"
+  import DashBoardPage from "../e2e/page_objects/dashboardPage.js"
  
 
   const loginPage = new LoginPageClass()

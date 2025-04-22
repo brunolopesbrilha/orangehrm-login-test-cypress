@@ -36,37 +36,37 @@ class LoginPageClass {
 
     loginAsValidUser(username, password) {
         this.accessLoginPage();
-        const { usernameField, PasswordField, SubmitloginButton } = this.selectorList();
+        const { usernameField, passwordField, submitloginButton } = this.selectorList();
         cy.get(usernameField).click().type(username);
-        cy.get(PasswordField).click().type(password);
-        cy.get(SubmitloginButton).click();
+        cy.get(passwordField).click().type(password);
+        cy.get(submitloginButton).click();
         cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
         cy.get(this.dashboardPage.selectorList().dashboardGrid).should('be.visible');
     }
 
     invalidUsername(username, password) {
         this.accessLoginPage();
-        const { usernameField, PasswordField, SubmitloginButton, ErrorAlert } = this.selectorList();
+        const { usernameField, passwordField, submitloginButton, errorAlert } = this.selectorList();
         cy.get(usernameField).click().type(username);
-        cy.get(PasswordField).click().type(password);
-        cy.get(SubmitloginButton).click();
-        cy.get(ErrorAlert);
+        cy.get(passwordField).click().type(password);
+        cy.get(submitloginButton).click();
+        cy.get(errorAlert);
     }
 
     invalidPassword(username, password) {
         this.accessLoginPage();
-        const { usernameField, PasswordField, SubmitloginButton, ErrorAlert } = this.selectorList();
+        const { usernameField, passwordField, submitloginButton, errorAlert } = this.selectorList();
         cy.get(usernameField).click().type(username);
-        cy.get(PasswordField).click().type(password);
-        cy.get(SubmitloginButton).click();
-        cy.get(ErrorAlert); 
+        cy.get(passwordasswordField).click().type(password);
+        cy.get(submitloginButton).click();
+        cy.get(errorAlert); 
     }
 
     copyright() {
         this.accessLoginPage();
-        const { CopyrightLink } = this.selectorList();
-        cy.get(CopyrightLink).click();
-        cy.get(CopyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com');
+        const { copyrightLink } = this.selectorList();
+        cy.get(copyrightLink).click();
+        cy.get(copyrightLink).should('have.attr', 'href', 'http://www.orangehrm.com');
     }
 
     forgetPassword(){
